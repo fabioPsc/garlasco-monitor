@@ -952,3 +952,24 @@
 - 30/04/2009 07:00 (il Giornale) [sentenza]
   Delitto di Garlasco: niente sentenza ma 5 nuove perizie - il Giornale
   https://news.google.com/rss/articles/CBMijAFBVV95cUxNdzA3d1BSNE5wSU5YZk5TRE5qLTJlb2tNR2kyRUM4WHlOblJ0NFlna3hMa0NFNkNmZi1hTmpYcGtGak1sRGtRUUxpS182SXVzOXQybGtZZEZ2cERUVVhQVEk4THNQU0hVMEY1V1FlWDdLNldlVDVpUl9ZRVhjblNKNUpCbktKOTlMYWI5Sg?oc=5
+
+## 25/10/2026 03:58
+
+- 19/10/2026 01:01 (Il Giorno)
+  Delitto di Garlasco, le tesi opposte di accusa e difesa su telefonate, scarpe e tracce genetiche - Il Giorno
+  https://news.google.com/rss/articles/CBMiowFBVV95cUxPUU5fUUJWYkprN1NlR2xYbkQ4SVpvVkVXbFpRbEtsMFVlX3BiY2lkbHYtS204MXJtdGZiX2h6WW91Rlc2OWpWcXBicTBKQmNSbm9ZakZDQllBNG96VXo1VTR6c1NXa0RrWnJacFVFQkx2TGNNbW9iLWYySEc1UVRoNVlacE9aam85V3lHNldNX3p6SjBIMHJZb1hKY0o1NFFsNWpJ?oc=5
+- 04/10/2026 07:00 (MilanoToday)
+  "Vorremmo solo che tutto finisse. Chiara ha il diritto di riposare in pace". I genitori di Chiara Poggi intervistati a Verissimo - MilanoToday
+  https://news.google.com/rss/articles/CBMihAFBVV95cUxNal8yM0RSYTRFNmJVTHFTYWNOQlhsN0RyeWFSZlB1Z1dxVHQtTUltQ0dmbkZ6Q0NfemJpdDhNVDhiTUhCVFcxelF2NjNvcWNsRmJnUENqYkMzZG8yYWVWLW5hcTBXbVpCdy1KZGlLUDUxa0pVOE04MkV3djRLb3I2NkNTUUE?oc=5
+- 30/09/2026 07:00 (MilanoToday) [dna]
+  Garlasco, i genetisti: "Indebito omettere il test negativo sul dna dei pedali di Stasi" - MilanoToday
+  https://news.google.com/rss/articles/CBMihgFBVV95cUxOM21MdEVxQnRZWGtCQ0MyNEZkRjB5Z0RiTWk3dnh4NU1Da25sN3JJdER2ejIta3otZEl1N3ZDcVJnLVB1UGRrTlFrYThpYWJ0MmM2aEw4QjRacEU1Z1ZnV2dxVWRJQWxPVTJ6SHlKblJLWXhNOWlRbklqVjFxa1I1aWVJaEVhUQ?oc=5
+- 28/09/2026 07:00 (Startupbusiness.it)
+  Caso Garlasco, nuova chiusura indagine per Sempio - Startupbusiness.it
+  https://news.google.com/rss/articles/CBMikAFBVV95cUxPTWQwb2F6c1ZRTmZxTHNBd3NxRUJmclo4ZklVaHFGaUQwczZWcmp3V2U1X1lGM1lhMU5IWXB0WmNlYk9UM0VNaTR0UjRQZ3Z1d0J5Rkl5T3Q4bEt1T09ub1pSZlBTVlFzem5lMER0MGlUUnNUTmJIMlZ2RFl2ay1PY09FZXNWbm9ybnJVWUNwY1Q?oc=5
+- 24/09/2026 07:00 (LA7)
+  Garlasco, quanto è durata l’aggressione a Chiara Poggi? - LA7
+  https://news.google.com/rss/articles/CBMipwFBVV95cUxQRl9DdzByQjlnNExkTGl0dkRramFyY0Z1ZjN1VEhBWXh4RkNpRTREQjROVnVFODdmRHhpcjBQem9jY0U5dlZWOWZnc0w4c05ka21PUjlJUXJuNHVWekxzZlhUWW5XaFUwc3NnZkhqZWk2blZRdU1ZYl9uV2xGUEZwQzJteGZ0YUVMNWJxeGhURXVkbF9TMUdCN3JYbEZRQmtodmdpb3pEVdIBrAFBVV95cUxQSm91QU9BMWo2UHBkZlB0RUoxRGxGZEJGaEJ3UVU2X3NjcHlIamFWQnlXd1J4RGNLS1Bkc2lReFpTZ0trTEd4a1JHZHg0cWc2YU9BUmltUmtyS3RVWDRFS3VJTjhKbjNSelVtSl8yLWpvR0JuQkdQNkNZRjZRaUVOVmZPT1NpdTdHUVI1c3p1alBRc2o4ZDBQSmNxV1YzWmJjYWNibW92QVgySHhi?oc=5
+- 09/09/2026 07:00 (Il Tempo) [revisione]
+  Garlasco, "perché ora Stasi può sperare nella revisione". I nuovi elementi - Il Tempo
+  https://news.google.com/rss/articles/CBMi4gFBVV95cUxQRGx6RC1YbUJ1elVzYkVaQ09RQmMtalE0WXhzZ05CbFFTMnBuU3lnUVFEMExPMlAzb21Kak5PMEs3bUp2WWxZSGNMbUlRNzRXMTNPLVgwcFdvek5CSk1xSFhGUGQ2dXQtbThTT0xUeF9SdTRtMUR6V1VvWVBVQWE3NkhJSmlPSlk2Z09mUHpqOFBkeGZYLW5pNnN4c0RqWHZ1Snc1MW4zTlUzemdvTTg2MlZOQktTNHBXbDBhTDhuSkdVUWxjZExVRU1MRVVlWm9maXRfQ0ZsWG1Lb09NdlRJNU9B?oc=5
