@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 """
 monitor_garlasco.py - Monitora fonti pubbliche (feed RSS/Atom) per nuovi
-articoli relativi al caso di Garlasco.
+articoli relativi al caso di Garlasco e li archivia.
 
-Novità rispetto alla prima versione:
-- orari convertiti in ora italiana (Europe/Rome, con ora legale)
-- novita.md tiene solo gli ultimi N giorni (default 7), raggruppati per giorno
-- seen.json si ripulisce da solo (voci più vecchie di 90 giorni)
-- le notizie più vecchie della finestra non vengono nemmeno segnalate
+File prodotti:
+  archivio.json        archivio completo, non viene mai potato
+  archivio/AAAA-MM.md  archivio leggibile, un file per mese
+  novita.md            solo gli ultimi N giorni (default 7)
+
+Se trova notizie nuove e recenti scrive un testo nel file indicato dalla
+variabile d'ambiente NOTIFY_FILE: il workflow lo usa per aprire una issue
+GitHub, che genera la notifica sul telefono.
 
 Solo libreria standard, Python 3.9+.
 
 Uso:
-    python monitor_garlasco.py            # controlla le novità
-    python monitor_garlasco.py --init     # primo avvio: segna tutto come già visto
+    python monitor_garlasco.py
+    python monitor_garlasco.py --init     # archivia senza notificare
     python monitor_garlasco.py --config altro.json
-
-Notifiche opzionali (variabili d'ambiente):
-    TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 """
 
 import argparse
@@ -36,13 +36,14 @@ from pathlib import Path
 try:
     from zoneinfo import ZoneInfo
     TZ = ZoneInfo("Europe/Rome")
-except Exception:  # tzdata mancante (es. Windows senza pacchetto tzdata)
+except Exception:  # tzdata mancante
     TZ = timezone.utc
 
-USER_AGENT = "Mozilla/5.0 (compatible; garlasco-monitor/2.0)"
-SEEN_FILE = Path("seen.json")        # id già visti -> data prima rilevazione
-ENTRIES_FILE = Path("novita.json")   # dati strutturati degli ultimi giorni
-NEWS_MD = Path("novita.md")          # versione leggibile
+USER_AGENT = "Mozilla/5.0 (compatible; garlasco-monitor/3.0)"
+ARCHIVE_FILE = Path("archivio.json")
+ARCHIVE_DIR = Path("archivio")
+NEWS_MD = Path("novita.md")
+LEGACY_FILES = [Path("novita.json"), Path("seen.json")]  # vecchie versioni
 
 GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
 MESI = ["gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio",
@@ -64,8 +65,7 @@ DEFAULT_CONFIG = {
         "sentenza", "revisione", "cassazione", "incidente probatorio",
         "impronta", "intercettazion", "avviso di garanzia",
     ],
-    "keep_days": 7,    # giorni di novità conservati in novita.md
-    "seen_days": 90,   # giorni di memoria degli articoli già visti
+    "keep_days": 7,  # giorni mostrati in novita.md e considerati "recenti"
 }
 
 
@@ -99,7 +99,7 @@ def parse_date(value):
 def parse_feed(raw):
     root = ET.fromstring(raw)
     items = []
-    ns_atom = "{http://www.w3.org/2005/Atom}"
+    ns = "{http://www.w3.org/2005/Atom}"
 
     for it in root.iter("item"):  # RSS
         link = (it.findtext("link") or "").strip()
@@ -112,17 +112,17 @@ def parse_feed(raw):
             "source": strip_html(it.findtext("source")),
         })
 
-    for en in root.iter(ns_atom + "entry"):  # Atom
-        link_el = en.find(ns_atom + "link")
+    for en in root.iter(ns + "entry"):  # Atom
+        link_el = en.find(ns + "link")
         link = link_el.get("href", "") if link_el is not None else ""
         items.append({
-            "id": (en.findtext(ns_atom + "id") or link).strip(),
-            "title": strip_html(en.findtext(ns_atom + "title")),
+            "id": (en.findtext(ns + "id") or link).strip(),
+            "title": strip_html(en.findtext(ns + "title")),
             "link": link,
-            "summary": strip_html(en.findtext(ns_atom + "summary")
-                                  or en.findtext(ns_atom + "content")),
-            "date": parse_date(en.findtext(ns_atom + "updated")
-                               or en.findtext(ns_atom + "published")),
+            "summary": strip_html(en.findtext(ns + "summary")
+                                  or en.findtext(ns + "content")),
+            "date": parse_date(en.findtext(ns + "updated")
+                               or en.findtext(ns + "published")),
             "source": "",
         })
     return items
@@ -133,7 +133,7 @@ def google_news_url(query):
     return f"https://news.google.com/rss/search?q={q}&hl=it&gl=IT&ceid=IT:it"
 
 
-# ------------------------------- stato e dati ------------------------------
+# ------------------------------ dati e utilità -----------------------------
 
 def now_utc():
     return datetime.now(timezone.utc)
@@ -148,28 +148,12 @@ def load_json(path, default):
     return default
 
 
-def load_seen():
-    data = load_json(SEEN_FILE, {})
-    if isinstance(data, list):  # vecchio formato: solo elenco di id
-        stamp = now_utc().isoformat()
-        return {i: stamp for i in data}
-    return data
-
-
-def prune_seen(seen, days):
-    cutoff = now_utc() - timedelta(days=days)
-    kept = {}
-    for item_id, stamp in seen.items():
-        try:
-            if datetime.fromisoformat(stamp) >= cutoff:
-                kept[item_id] = stamp
-        except (TypeError, ValueError):
-            kept[item_id] = now_utc().isoformat()
-    return kept
+def local(dt):
+    return dt.astimezone(TZ)
 
 
 def entry_time(entry):
-    """Data usata per ordinare e potare: quella dell'articolo, altrimenti la rilevazione."""
+    """Data dell'articolo, altrimenti quella della rilevazione."""
     for key in ("date", "seen_at"):
         value = entry.get(key)
         if value:
@@ -180,29 +164,35 @@ def entry_time(entry):
     return now_utc()
 
 
-# ------------------------------- formattazione -----------------------------
-
-def local(dt):
-    return dt.astimezone(TZ)
-
-
 def matches(item, keywords):
     blob = f"{item['title']} {item['summary']}".lower()
     return any(k.lower() in blob for k in keywords)
 
 
-def tags_for(item, words):
+def make_entry(item, highlight):
     blob = f"{item['title']} {item['summary']}".lower()
-    return [w for w in words if w in blob]
+    return {
+        "id": item["id"],
+        "title": item["title"],
+        "link": item["link"],
+        "source": item["source"],
+        "date": item["date"].isoformat() if item["date"] else None,
+        "seen_at": now_utc().isoformat(),
+        "tags": [w for w in highlight if w in blob],
+    }
 
 
-def render_md(entries, keep_days):
-    stamp = local(now_utc()).strftime("%d/%m/%Y %H:%M")
-    lines = [
-        "# Novità caso Garlasco",
-        "",
-        f"Ultimi {keep_days} giorni · orari in ora italiana · aggiornato il {stamp}",
-    ]
+def line_for(entry, with_day=False):
+    dt = local(entry_time(entry))
+    when = dt.strftime("%d/%m %H:%M") if with_day else dt.strftime("%H:%M")
+    title = entry["title"].replace("[", "(").replace("]", ")")
+    src = f" · {entry['source']}" if entry.get("source") else ""
+    flag = f" · `{', '.join(entry['tags'])}`" if entry.get("tags") else ""
+    return f"- **{when}**{src}{flag} · [{title}]({entry['link']})"
+
+
+def render_md(entries, title, subtitle):
+    lines = [f"# {title}", "", subtitle]
     current_day = None
     for e in entries:
         dt = local(entry_time(e))
@@ -210,40 +200,35 @@ def render_md(entries, keep_days):
         if day != current_day:
             lines += ["", f"## {day}", ""]
             current_day = day
-        title = e["title"].replace("[", "(").replace("]", ")")
-        src = f" · {e['source']}" if e.get("source") else ""
-        flag = f" · `{', '.join(e['tags'])}`" if e.get("tags") else ""
-        lines.append(f"- **{dt.strftime('%H:%M')}**{src}{flag} · [{title}]({e['link']})")
+        lines.append(line_for(e))
     return "\n".join(lines) + "\n"
 
 
-def notify_telegram(text):
-    token = os.getenv("TELEGRAM_BOT_TOKEN")
-    chat_id = os.getenv("TELEGRAM_CHAT_ID")
-    if not token or not chat_id:
+def write_monthly(entries):
+    months = {}
+    for e in entries:
+        dt = local(entry_time(e))
+        months.setdefault((dt.year, dt.month), []).append(e)
+    ARCHIVE_DIR.mkdir(exist_ok=True)
+    for (year, month), items in months.items():
+        text = render_md(
+            items,
+            f"Archivio caso Garlasco · {MESI[month - 1]} {year}",
+            f"{len(items)} {'notizia' if len(items) == 1 else 'notizie'}"
+            " · orari in ora italiana",
+        )
+        (ARCHIVE_DIR / f"{year}-{month:02d}.md").write_text(text, encoding="utf-8")
+
+
+def write_notification(new_recent):
+    path = os.getenv("NOTIFY_FILE")
+    if not path or not new_recent:
         return
-    # Telegram accetta max 4096 caratteri: spezzo il messaggio per righe
-    chunks, current = [], ""
-    for line in text.split("\n"):
-        if len(current) + len(line) + 1 > 3800:
-            chunks.append(current)
-            current = ""
-        current += line + "\n"
-    if current.strip():
-        chunks.append(current)
-    for chunk in chunks:
-        data = urllib.parse.urlencode({
-            "chat_id": chat_id,
-            "text": chunk,
-            "disable_web_page_preview": "true",
-        }).encode()
-        try:
-            urllib.request.urlopen(
-                f"https://api.telegram.org/bot{token}/sendMessage", data=data, timeout=20
-            )
-        except Exception as exc:
-            print(f"[!] Telegram non riuscito: {exc}", file=sys.stderr)
-            break
+    stamp = local(now_utc()).strftime("%d/%m/%Y %H:%M")
+    lines = [f"Nuove notizie trovate il {stamp} (ora italiana):", ""]
+    lines += [line_for(e, with_day=True) for e in new_recent]
+    lines += ["", "Archivio completo: cartella `archivio/` del repository."]
+    Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 # ----------------------------------- main ----------------------------------
@@ -252,7 +237,7 @@ def main():
     ap = argparse.ArgumentParser(description="Monitor caso Garlasco")
     ap.add_argument("--config", help="file JSON di configurazione")
     ap.add_argument("--init", action="store_true",
-                    help="primo avvio: registra tutto come già visto senza notificare")
+                    help="archivia tutto senza generare la notifica")
     args = ap.parse_args()
 
     config = dict(DEFAULT_CONFIG)
@@ -261,10 +246,19 @@ def main():
 
     keep_days = int(config["keep_days"])
     cutoff = now_utc() - timedelta(days=keep_days)
-    urls = [google_news_url(q) for q in config["google_news_queries"]] + config["feeds"]
+    notify_path = os.getenv("NOTIFY_FILE")
+    if notify_path and Path(notify_path).exists():
+        Path(notify_path).unlink()
 
-    seen = load_seen()
-    new_items = []
+    # archivio esistente + dati delle versioni precedenti (migrazione)
+    archive = {}
+    for source in (load_json(ARCHIVE_FILE, []), load_json(Path("novita.json"), [])):
+        for e in source:
+            if e.get("id"):
+                archive.setdefault(e["id"], e)
+
+    urls = [google_news_url(q) for q in config["google_news_queries"]] + config["feeds"]
+    new_recent = []
 
     for url in urls:
         try:
@@ -273,59 +267,42 @@ def main():
             print(f"[!] Errore su {url}: {exc}", file=sys.stderr)
             continue
         for item in items:
-            if not item["id"] or item["id"] in seen:
+            if not item["id"] or item["id"] in archive:
                 continue
             if not matches(item, config["keywords"]):
                 continue
-            seen[item["id"]] = now_utc().isoformat()
-            if item["date"] and item["date"] < cutoff:
-                continue  # fuori finestra: lo ricordo ma non lo segnalo
-            new_items.append(item)
+            entry = make_entry(item, config["highlight"])
+            archive[entry["id"]] = entry
+            if entry_time(entry) >= cutoff:  # solo le recenti fanno notifica
+                new_recent.append(entry)
 
-    seen = prune_seen(seen, int(config["seen_days"]))
-    SEEN_FILE.write_text(json.dumps(seen, indent=0, sort_keys=True), encoding="utf-8")
-
-    if args.init:
-        print(f"Inizializzato: {len(seen)} elementi registrati come già visti.")
-        return
-
-    # aggiorno l'archivio degli ultimi giorni
-    entries = load_json(ENTRIES_FILE, [])
-    known = {e["id"] for e in entries}
-    for item in new_items:
-        if item["id"] in known:
-            continue
-        entries.append({
-            "id": item["id"],
-            "title": item["title"],
-            "link": item["link"],
-            "source": item["source"],
-            "date": item["date"].isoformat() if item["date"] else None,
-            "seen_at": now_utc().isoformat(),
-            "tags": tags_for(item, config["highlight"]),
-        })
-    entries = [e for e in entries if entry_time(e) >= cutoff]
-    entries.sort(key=entry_time, reverse=True)
-
-    ENTRIES_FILE.write_text(json.dumps(entries, ensure_ascii=False, indent=1),
+    entries = sorted(archive.values(), key=entry_time, reverse=True)
+    ARCHIVE_FILE.write_text(json.dumps(entries, ensure_ascii=False, indent=1),
                             encoding="utf-8")
-    NEWS_MD.write_text(render_md(entries, keep_days), encoding="utf-8")
+    write_monthly(entries)
 
-    if not new_items:
-        print("Nessuna novità.")
+    recent = [e for e in entries if entry_time(e) >= cutoff]
+    stamp = local(now_utc()).strftime("%d/%m/%Y %H:%M")
+    NEWS_MD.write_text(
+        render_md(recent, "Novità caso Garlasco",
+                  f"Ultimi {keep_days} giorni · orari in ora italiana · "
+                  f"aggiornato il {stamp}"),
+        encoding="utf-8",
+    )
+
+    for legacy in LEGACY_FILES:  # dati ormai migrati nell'archivio
+        legacy.unlink(missing_ok=True)
+
+    print(f"Archivio: {len(entries)} notizie in totale.")
+    if args.init or not new_recent:
+        print("Nessuna novità." if not new_recent else "Init: nessuna notifica.")
         return
 
-    lines = []
-    for item in sorted(new_items, key=lambda i: i["date"] or now_utc(), reverse=True):
-        when = local(item["date"]).strftime("%d/%m %H:%M") if item["date"] else "n.d."
-        tags = tags_for(item, config["highlight"])
-        flag = f" [{', '.join(tags)}]" if tags else ""
-        src = f" ({item['source']})" if item["source"] else ""
-        lines.append(f"- {when}{src}{flag}\n  {item['title']}\n  {item['link']}")
-
-    report = f"Novità caso Garlasco ({len(new_items)}):\n\n" + "\n".join(lines)
-    print(report)
-    notify_telegram(report)
+    new_recent.sort(key=entry_time, reverse=True)
+    print(f"Novità: {len(new_recent)}")
+    for e in new_recent:
+        print(line_for(e, with_day=True))
+    write_notification(new_recent)
 
 
 if __name__ == "__main__":
