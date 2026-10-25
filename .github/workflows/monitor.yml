@@ -8,6 +8,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: monitor-garlasco
+  cancel-in-progress: false
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -25,5 +29,5 @@ jobs:
         run: |
           git config user.name "garlasco-monitor"
           git config user.email "actions@users.noreply.github.com"
-          git add seen.json novita.md || true
-          git diff --cached --quiet || (git commit -m "Aggiornamento novità" && git push)
+          git add seen.json novita.json novita.md || true
+          git diff --cached --quiet || (git commit -m "Aggiornamento novità" && git pull --rebase && git push)
