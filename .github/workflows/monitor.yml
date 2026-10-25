@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: monitor-garlasco
@@ -15,19 +16,35 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
+    env:
+      NOTIFY_FILE: ${{ runner.temp }}/nuove_notizie.md
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
       - name: Esegui monitor
-        env:
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python monitor_garlasco.py
-      - name: Salva stato e log
+
+      - name: Salva archivio
         run: |
           git config user.name "garlasco-monitor"
           git config user.email "actions@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || (git commit -m "Aggiornamento novità" && git pull --rebase && git push)
+          git diff --cached --quiet || (git commit -m "Aggiornamento archivio" && git pull --rebase && git push)
+
+      - name: Notifica nuove notizie
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f "$NOTIFY_FILE" ]; then
+            N=$(grep -c '^- ' "$NOTIFY_FILE")
+            gh issue create \
+              --title "Garlasco: $N nuove notizie" \
+              --body-file "$NOTIFY_FILE" \
+              --assignee "${{ github.repository_owner }}" \
+            || gh issue create \
+              --title "Garlasco: $N nuove notizie" \
+              --body-file "$NOTIFY_FILE"
+          fi
