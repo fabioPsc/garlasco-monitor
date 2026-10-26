@@ -1,6 +1,10 @@
 # Novità caso Garlasco
 
-Ultimi 7 giorni · orari in ora italiana · aggiornato il 26/10/2026 03:07
+Ultimi 7 giorni · orari in ora italiana · aggiornato il 26/10/2026 09:14
+
+## lunedì 26 ottobre 2026
+
+- **06:49** · ParmaToday · [Garlasco, Garofano torna sulle analisi del Ris nei laboratori di Parma del 2007: "L'autorità giudiziaria accerterà i fatti, le ipotesi in tv non hanno rilievo" - ParmaToday](https://news.google.com/rss/articles/CBMivwFBVV95cUxNdjdFZl9ycXRqd09TLUJuZWNqc3ZCSTRhRnljV3U1WFJRRHFXb2VleEtod29WWlp3YThFaHhzRnNPYVpYWmY0elFaU05uMW42NkRQYWVvNUpYVUhmSGZ4bkhWZ1dKUXdkUTNGQUdUaWhRR1RkUWg4QlJhQVdVSkowM2VmUzJVVlFod3BJS2NLWGhQTUQwM01haGZpSV9ObTAyYVgtbjF1bzBLUVhjNUF4Q0dnNlVnMHBnS05ZTXBRVQ?oc=5)
 
 ## domenica 25 ottobre 2026
 
