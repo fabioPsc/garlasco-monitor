@@ -1,6 +1,6 @@
 # Novità caso Garlasco
 
-Ultimi 7 giorni · orari in ora italiana · aggiornato il 01/11/2026 00:51
+Ultimi 7 giorni · orari in ora italiana · aggiornato il 01/11/2026 03:58
 
 ## sabato 31 ottobre 2026
 
