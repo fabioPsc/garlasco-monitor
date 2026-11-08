@@ -1,9 +1,11 @@
 # Novità caso Garlasco
 
-Ultimi 7 giorni · orari in ora italiana · aggiornato il 08/11/2026 13:22
+Ultimi 7 giorni · orari in ora italiana · aggiornato il 08/11/2026 20:13
 
 ## domenica 8 novembre 2026
 
+- **20:07** · Torino Cronaca · [Garlasco, la difesa di Sempio vuole fermare il procedimento prima del processo: la mossa su Stasi - Torino Cronaca](https://news.google.com/rss/articles/CBMi4wFBVV95cUxPYmVuUk1Kd2g2SUNxR0RLLVYtUk1iUmNDOHAzSXpsWE12VWNoVXJUTzlOUzFRbmdwc1FvNEVOdmNIWHVOMjQzT096ZUpwZTFQaVBXNmRmZXZ3MnQwZlRzWkhqYXd1QkxqUjFKY3NGWm1qLXp0aWNueTNvQ3dTME9aVk4xcVlDQ2pmV0NNb2M4d2FQZ0s2TC1RUEx4d193N3VfZ0k0T3VWZVlJSGlscko3Z1FwV0tjWXc2Z1laY1BfQ1p4VkZ1ZUZBOWIwa0tVdGRpSnFQT2dtejE1SmtvUm1FU25tdw?oc=5)
+- **17:31** · Virgilio · [Il processo a Sempio per il delitto di Garlasco rischia lo stop prima di iniziare: la mossa della difesa - Virgilio](https://news.google.com/rss/articles/CBMi2wFBVV95cUxNclg5SnExZUhwYkRwLUtWdE9URmoxMVlSQ1ZIZER4bGEzZGNNR09LcDNiSTJ1SGV4SmlVb3JZMWpzbFMxaXZ6dVZGLTJSUl9pU0g4NkNEdmRDWTMxcEltaG9OX0cxTmIzS0ZjZlFOSFliOWtTMUNhQzJDeURiZml3MXV4T3hnTDl5QlNPbzhzdTdRWlR4U1k0cFQ3blI5bkoxSThHS2haaUlZQTd6VnZOQVFabkFJWUllV2RWWmZ0TGNqazVWTkhXNUt3RlVvWm9xbFJTNlp0SHFCc1nSAeABQVVfeXFMTVdoX2ZZVWptMW9JcmluaW1GLV9BN3QxOWtTSzlFZGxuWDVjcmJwak1BSlJfVkhCeWpvVlZKV2dGYXZrT3ZMN1VuRnVTelcxb05yRlFxSkRSRGRlSjVSNU5aNnBWelhlcE9VTzJrUzY2enE0MFhXOGZzLTVrVE9xd1YwSV9XcVRFVFV1TzJQaUpkRllxa21vNV90V2I4Q2JvWXNSa1RVMmJoeEtRRTg1SGFHdlVCV1RhMmducGtkVll0RWt6T1RRU0FNVjNyVjlCRXRlbkY0NGpXVUVBQVJpMTA?oc=5)
 - **06:30** · Fanpage · [Perché non sono state analizzate le impronte sul pigiama di Chiara Poggi: oggi non c'è più nulla - Fanpage](https://news.google.com/rss/articles/CBMixwFBVV95cUxPc1F4RlI2SUdyakRHOGR1UlJLVXM3SkVVT2tScVFFTjRKdjc0dGdFZVFIN1BCMDBpbTF6X1VBenEzQW03X2o4dUlpN21HUC1YYzZMYUF1c0F4SlhVOEJPMXZOVTcyYjZ3SEM0Q24zRzgyUlVIeEJMdlREZGt4N1F6STZ6ckptYmJ0Mm5yVHRxWHljZFJYbl9yNFc3Rmg0c1VUb1RkSFdJdHNNTWVPb1AxRlp6VVpVeHU5bDJTblY2bnlDbGxOZmZB?oc=5)
 
 ## sabato 7 novembre 2026
