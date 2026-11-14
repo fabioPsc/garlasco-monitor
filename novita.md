@@ -1,6 +1,6 @@
 # Novità caso Garlasco
 
-Ultimi 7 giorni · orari in ora italiana · aggiornato il 14/11/2026 13:39
+Ultimi 7 giorni · orari in ora italiana · aggiornato il 14/11/2026 20:34
 
 ## sabato 14 novembre 2026
 
@@ -243,6 +243,3 @@ Ultimi 7 giorni · orari in ora italiana · aggiornato il 14/11/2026 13:39
 ## sabato 7 novembre 2026
 
 - **23:43** · Virgilio · [Caso Ravagnani, Diaco si difende citando Garlasco e Chiara Poggi. E Milly Carlucci spiega la sua “difesa” - Virgilio](https://news.google.com/rss/articles/CBMi2AFBVV95cUxPUXdpVW13RF9NaG83MlpuSnZKU3RXeDB5RDVDUUV6S25RQXlaeFowcjBYY2Q2M0M0T1pGM04wOUcyZU9maktEUWc5NExmRUhlWDk4OWtvN2sxRVBnZENxZDltYzJ6OWtYR0tuRTBGRWxJbHRPaUpmRHk2WGl1dU1rQkVKQUtURE9wdUxzdGdsOE1Oc2V5aEdlQjVrYjlLZWFTa1RtbUNnTFNKazZDVEdrR3VzQWRSVUE0TWszZFN6RndtX3Bydi1nYUxGNFNhUS13WkE4WW1odkzSAd4BQVVfeXFMTTl1T25obFcydHNNd0R6V3dfR0hIanBKNlotLTlkMG93TVlwb3N0T29uNVRnQmVRbXk1WGtZLWIybEhxTjh6cU1XT3hJM2U0NXk4NFBwazk1aG9MS2RxUGFHZTljUW5yT0VZNllsb2pxVG5uYUhxaFVIblA2TXJlNzRYRUFNWENocUhJcHJEcWs4bEtJbXRUSDE5RzduN1dXWDVzaXdjMDBUWUJVbTJqZ1ZCX3E4Z0hFc3p5TDFpSEVvRHY0Z2R5OS1KbmNHT1lfamhwSUlUTnlnM0lnZjJ3?oc=5)
-- **16:32** · L'Araldo Lomellino · [Garlasco, Sempio parla dopo la richiesta di rinvio a giudizio: «Non ho paura» - L'Araldo Lomellino](https://news.google.com/rss/articles/CBMixAFBVV95cUxQWGVSdEMxSU01VnBQTW1YbHBHemhITEpmaDVtcy1yd1pBNVdEME9mT0VZLVcwVXotbF9aY3ZBdHBpZjJZamhfNHRTLUVBVzZDVVVoWngxU01uV3FmUkstZ05DNExJSXBKOVJJUDUxYlNJaHE3YVJLT0RwdDlIdDRLNEI1SGItSUVpd1FkcW1wMk1wRkpDRkNxUU9kQTVlY0liWU9ycWY3a0pDSU9YRTdWcnhMcVZacGtQbzIwY3RMQTBiaUVx?oc=5)
-- **15:35** · Libero · `revisione` · [Caso Garlasco, Sempio verso il processo e Stasi punta alla revisione: cosa può succedere adesso - Libero](https://news.google.com/rss/articles/CBMiuwFBVV95cUxONU9JaWNiVU5WNjN5RzQxWmRYdmNaTzJSVlQtUjJpcUhfU0lDNm5UbXBwclJ2elE2dUZHd19JczFJU2lCUFFJSkJjMWU3Y2RBUXVOZTM2QXJoLThVS255SURXWDhWQjhsbjdYVFZLRE5rWVRjSVFOV1BIR0V2T0tXNVN0N1NKVnpPRVFqZmxZWEtfZEc3cWtVc0RyTEhkZTlnQzJhRUNBeWM4NkNfY2tZTW9MR25PSld0SFFB0gHAAUFVX3lxTFBTODJmcnRzSWgxcTJvZTJJNmRCTHNYc205UV91Y2JhWjlCUmh5OTJ0S21jRGlVM2RKcDlscl8tYkhLRlVNLWtLMWkzTURicGJLbmltSmZoVUJPMUs0NzdJWG82c1ZDUnZXN1g4RXBvOF9zLUdZcXFQRmt0ald5OGVLd3lNeXNmektaa3EtVTlGUndxeE5VRDdEZEZFb0tRU0RvdllDbmJqZFYwWmtmRVVCeDFtMGxMWjJOcjhOeFBTZA?oc=5)
-- **14:25** · Il Dubbio · [Garlasco il nodo gordiano che non si può sciogliere: un imputato per un delitto che ha già un condannato - Il Dubbio](https://news.google.com/rss/articles/CBMitAFBVV95cUxNa3VMU3RXVzM3TWQ4YkVsT2JjazdLQ0dMZkpBVks1WmcwQkFzclZWN21jQzd2dk1FTXlXN09zS2VWVWVBaGl4TjctekJXM3pianFxVHR4Q3JuNVhFWnc4NDNrM2JIOVBGTlpzeTBRRnMxS2RfbU5TSHlXNzVmMnQ2ZjU5bENLWVh1RzBkemRIdFhMWlVIc3ozclcxamtudUFzMkh1ajNXYXFweWVSQ0RvSFdkeW4?oc=5)
